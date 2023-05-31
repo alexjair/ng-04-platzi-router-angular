@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit{
     private productsService : ProductsService,
   ){}
 
+  productId: string | null = null; //params
   categoryId: string | null = null;
   products: Product[] = [];
   limit = 10;
@@ -59,6 +60,11 @@ export class CategoryComponent implements OnInit{
       }
     });
     */
+    this.route.queryParamMap.subscribe( params =>{
+      this.productId = params.get('product'); //url: ?product=12
+      console.log(this.productId);
+
+    });
   }
 
 

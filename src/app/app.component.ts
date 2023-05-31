@@ -10,6 +10,7 @@ import { FilesService } from './services/files.service';
 })
 export class AppComponent {
   imgRta = '';
+  title: any;
 
   constructor(
     private usersService: UsersService,

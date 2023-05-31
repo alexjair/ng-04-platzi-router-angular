@@ -3,9 +3,9 @@ import {
   Product,
   CreateProductDTO,
   UpdateProductDTO,
-} from '../../models/product.model';
-import { StoreService } from '../../services/store.service';
-import { ProductsService } from '../../services/products.service';
+} from '../../../models/product.model';
+import { StoreService } from '../../../services/store.service';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -13,6 +13,16 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
+
+  //params y detectar el cambio
+  //@Input() productId: string | null = null;
+  @Input()
+    set productId(id: string | null){
+      if(id){
+        this.onShowDetail(id);
+      }
+    }
+
   @Output() outfunloadMore = new EventEmitter();
   @Input() products: Product[] = [];
   myShoppingCart: Product[] = [];
@@ -39,7 +49,10 @@ export class ProductsComponent {
 
   onShowDetail(id: string) {
     this.statusDetail = 'loading';
-    this.toggleProductDetail();
+    //this.toggleProductDetail();
+    if(!this.showProductDetail){
+      this.showProductDetail = true;
+    }
     this.productsService.getOne(id).subscribe(
       (data) => {
         this.productChosen = data;
