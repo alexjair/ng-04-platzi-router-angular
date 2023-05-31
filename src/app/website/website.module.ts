@@ -20,6 +20,10 @@ import { SwiperModule } from 'swiper/angular';
 //shared import
 import { SharedModule} from './../shared/shared.module';
 
+//Estrategia: QuickLink Strategy | https://github.com/mgechev/ngx-quicklink | npm install ngx-quicklink --legacy-peer-deps
+import { QuicklinkModule } from 'ngx-quicklink'
+
+
 @NgModule({
   declarations: [
     NavComponent,
@@ -36,7 +40,8 @@ import { SharedModule} from './../shared/shared.module';
     CommonModule,
     WebsiteRoutingModule,
     SwiperModule,
-    SharedModule
+    SharedModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }

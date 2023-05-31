@@ -10,15 +10,16 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
+import { AuthGuard } from './../guards/auth.guard';
+import { ExitGuard } from './../guards/exit.guard';
+
 const routes: Routes = [
   { path: '', component: LayoutComponent,
     children: [
       //redirection
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-
       //control
       { path: 'home', component: HomeComponent },
-
       //modular to
       //old --> { path: 'category/:id', component: CategoryComponent },
       //new -->
@@ -29,16 +30,14 @@ const routes: Routes = [
           preload: true,
         },
       },
-
-
       { path: 'mycart', component: MycartComponent },
       { path: 'recovery', component: RecoveryComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
       { path: 'product/:id', component: ProductDetailComponent },
 
       //free
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      { path: 'register', component: RegisterComponent, canDeactivate:[ExitGuard]},
     ]
   },
 ];
